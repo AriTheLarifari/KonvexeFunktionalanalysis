@@ -1,0 +1,270 @@
+\documentclass{article}
+
+\usepackage{mypckg2}
+
+\begin{document}
+	\section{Duale Paare, schwache und duale Topologien}
+	
+	\begin{Def}{Duales Paar}{}
+		Seien $X,Y$ $\KK$-Vektorräume und $\p{\bullet}{\bullet}\colon X\times Y\to \KK$ eine bilineare Abbildung. Sind die Familien $\{x\mapsto \p{x}{y}\}_{y\in Y}$ und $\{y\mapsto \p{x}{y}\}_{x\in X}$ punktetrennend, das heißt
+		\[\forall x\in X\setminus\{0\}\;\exists y\in Y:\;\;\p{x}{y}\ne 0\;\;\te{und }\;\;\forall y\in Y\setminus\{0\}\;\exists x\in X:\;\;\p{x}{y}\ne 0\,,\]
+		so nennt man $(X,Y,\p{X}{Y})$ ein \textbf{duales Paar}.
+	\end{Def}
+	
+	\begin{Bemerkung}{}{}
+		Man kann die Elemente von $X$ bzw. $Y$ als lineare Funktionale auf $Y$ bzw. $X$ auffassen, via
+		\[\ell_{y}\colon x\mapsto \ell_{y}(x)=\p{x}{y}\]
+		bzw.
+		\[\ell_{x}\colon y\mapsto \ell_{x}(y)=\p{x}{y}\,.\]
+	\end{Bemerkung}
+	
+	\begin{Beispiel}{}{}
+		\begin{itemize}
+			\item[(i)] Ist $X$ ein lokalkonvexer Hausdorff-Raum, dann ist $(X,X')$ ein duales Paar, mit
+			\[(x,f)\mapsto \p{x}{f}:=f(x)\,.\]
+			Nach Hahn Banach ist die Familie $X'$ punktetrennend und $X$ ist trivialerweise punktetrennend.
+			\item[(ii)] Genauso ist $(X',X)$ ein duales Paar.
+		\end{itemize}
+	\end{Beispiel}
+	
+	\begin{Def}{$\sigma(X,Y)$-Topologie}{}
+		Sei $(X,Y)$ ein duales Paar. Die \textbf{$\sigma(X,Y)$-Topologie} auf $X$ ist die lokalkonvexe Toplogie, die von den Halbnormen $(x\mapsto|\p{x}{y}|)_{y\in Y}$ erzeugt wird.
+	\end{Def}
+	
+	\begin{Bemerkung}{}{}
+		\begin{itemize}
+			\item[(i)] Die $\sigma(X,Y)$-Topologie ist Hausdorff, weil wir in der Definition von \enquote{dualem Paar} punktetrennend gefordert haben.
+			\item[(i)] Die $\sigma(X,Y)$-Topologie ist die gröbste Topologie auf $X$, sodass alle $\ell_{y}\colon X\to \KK$ stetig sind (siehe z.B. Satz VIII.3.6 oder Übungsaufgabe in Funkana1?)
+		\end{itemize}
+	\end{Bemerkung}
+	
+	Frage: Was ist der topologische Dualraum von $X$ mit der $\sigma(X,Y)$-Topologie?\\
+	Antwort: Es ist genau $Y$!\\
+	\\
+	Für den Beweis benötigen wir folgendes Lemma:
+	\begin{Lemma}{}{}
+		Sei $X$ ein $\KK$-Vektorraum und $\ell,\ell_1,\ldots,\ell_n\colon X\to \KK$ lineare Funktionale. Setze $N:=\cap_{i=1}^n\ker(\ell_i)$, dann sind äquivalent:
+		\begin{itemize}
+			\item[(i)] $\ell\in \spann(\ell_1,\ldots,\ell_n)$
+			\item[(ii)] $\exists M>0\;\forall x\in X:\;\;|\ell(x)|\le M\max_{1\le i\le n}|\ell(x_i)|$
+			\item[(iii)] $N\subseteq \ker(\ell)$.
+		\end{itemize} 
+	\end{Lemma}
+	
+	\begin{Beweis}
+		(i)$\implies$(ii): Sei $\ell=\sum \alpha_i\ell_i$, dann gilt
+		\[\ell(x)|\le \sum |\alpha_i\ell_i(x)|\le \max \alpha_i\max_{|\ell_i(x)|}\,.\]
+		(ii)$\implies$(iii): Sei $x\in N$, dann gilt
+		\[|\ell(x)|\le m\max_{1\le i\le n}|\ell(x_i)|=0\,.\]
+		(iii)$\implies$ (i):
+	\end{Beweis}
+	
+	Daraus folgt sofort das folgende Korollar:
+	
+	\begin{Kor}{}{}
+		Sei $(X,Y)$ ein duales Paar. Dann ist
+		\[(X,\sigma(X,Y))'=Y\,,\]
+		in dem Sinn, dass jedes lineares, $\sigma(X,Y)$-stetiges Funktional auf $X$ von der Form $x\mapsto \p{x}{y}$ für ein bestimmtes $y$ ist und dass jedes Funktional dieser Form linear und $\sigma(X,Y)$ stetig ist, also:
+		\[(X,\sigma(X,Y))'=\left\{x\mapsto \p{x}{y}\,\big|\, y\in Y\right\}\]
+	\end{Kor}
+	
+	\begin{Beweis}
+	 $\subseteq$: Sei $f\colon X\to \KK$ linear und $\sigma(X,Y)$-stetig. Dann gibt es endlich viele Halbnormen, sodass
+	 \[|f(x)|\le M\max_{i}|p_i(x)|\]
+	 Die Halbnormen sind gerade gegeben durch $y$, also
+	 \[f(x)|\le M\max_i |\p{x}{y}|\,.\]
+	 Nach dem Lemma also $f\in \spann(\ell_{y_1},\ldots,\ell_{y_n})$, also $f=\ell_{\sum \alpha_iy_i}$.\\
+	 $\subseteq$: Sei $y\in Y$, dann ist $\ell_y$ linear und $|\ell_y|$ eine Halbnorm auf $X$, die die lct erzeugt, also stetig.
+	\end{Beweis}
+	
+	\begin{Def}{}{}
+		Sei $(X,Y)$ ein duales Paar. Eine lokalkonvexe Topologie $\tau$ auf $X$ heißt \textbf{$\p{X}{Y}$-duale Topologie}, falls 
+		\[(X,\tau)'=Y\,,\]
+		also die linearen, $\tau$-stetigen Funktionale genau die von der Form
+		\[x\mapsto\p{x}{y}\]
+		für $y\in Y$ sind.
+	\end{Def}
+	
+	Nach dieser Definition ist $\sigma(X,Y)$ die gröbste $\p{X}{Y}$-duale Topologie. Eine Charakterisierung aller $\p{X}{Y}$-dualen Topologien gibt der Satz von Mackey-Ahrens, den wir später besprechen werden.
+	
+	\section{Polare Mengen und der Bipolarensatz}
+	
+	\begin{Def}{}{}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$, $B\subseteq Y$. Dann ist die \textbf{Polare} von $A$ gegeben durch
+		\[A^{\circ}:=\left\{y\in Y\,\big|\,\sup_{x\in A}\Rea(\p{x}{y})\le 1\right\}\tag{Teilmenge von $Y$}\]
+		und die Polare von $B$ durch
+		\[B^{\circ}:=\left\{x\in X\,\big|\,\sup_{y\in B}\Rea(\p{x}{y})\le 1\right\}\tag{Teilmenge von $X$}\]
+	\end{Def}
+	
+	{\fontencoding{U}\fontfamily{futs}\selectfont\char 49\relax} Oft wird auch $|\p{x}{y}|\le 1$ statt $\Rea(\p{x}{y})$ gefordert.
+	
+
+	
+	\begin{Lemma}{Eigenschaften von Polaren}{1}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$. Dann gilt:
+		\begin{itemize}
+			\item[(i)] $0\in A^{\circ}$, $A^{\circ}$ ist konvex und abgeschlossen bzgl. $\sigma(Y,X)$ und $A^{\circ}=\overline{\mathrm{conv}(A)}^{\circ}$.
+			\item[(ii)] $A\subseteq A^{\circ\circ}$ und $A\subseteq B\implies B^{\circ}\subseteq A^{\circ}$.
+			\item[(iii)] Sei $I$ eine Indexmenge und $(A_i)_{i\in I}\subseteq X^I$. Dann gilt
+			\[\left(\bigcup_{i\in I} A_i\right)^{\circ}=\bigcap_{i\in I}A_i^{\circ}\,.\]
+			\item[(iv)] Ist $A$ kreisförmig, dann ist $A^{\circ}=\{y\in Y\,|\, \sup_{x\in A}|\p{x}{y}|\le 1\}$.
+			\end{itemize}
+	\end{Lemma}
+	
+	\begin{proof}
+		Aus dem Kopf
+	\end{proof}
+	
+		\begin{Beispiel}{}{}
+		\begin{itemize}
+			\item[(i)] Ist $X$ ein normierter Raum, dann ist
+			\[(B_1^X)^{\circ}=B_1^{X'}\,.\]
+			Beweis: klar
+		\end{itemize}
+	\end{Beispiel}
+	
+	
+	
+	\begin{Satz}{Bipolarensatz}{}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$. Dann ist 
+		\[A^{\circ\circ}=\overline{\mathrm{conv}(A\cup \{0\})}\,.\]
+	\end{Satz}
+	
+	\begin{proof}
+		\enquote{$\supseteq$}: Note that, by the previous lemma:
+		\[(A\cup\{0\})^{\circ}=A^{\circ}\cap\underbrace{\{0\}^{\circ}}_{Y}=A^{\circ}\implies (A\cup\{0\})^{\circ\circ}=A^{\circ\circ}\,.\]
+		Hence:
+		\[A^{\circ\circ}=(A\cup \{0\})^{\circ\circ}=\overline{\mathrm{conv}(A\cup \{0\})}^{\circ\circ}\supseteq \overline{\mathrm{conv}(A\cup \{0\})}\,.\]
+		\enquote{$\subseteq$}: Angenommen, $\exists x\in A^{\circ\circ}\setminus\overline{\mathrm{conv}(A\cup \{0\})}$. Da $V:=\overline{\mathrm{conv}(A\cup \{0\})}$ konvex und $\sigma(X,Y)$-abgeschlossen ist (Abschluss von konvexen Mengen ist konvex), gibt es nach Hahn-Banach ein $\sigma(X,Y)$-stetiges Funktional, dass $x$ und $V$ trennt. Wegen $(X,\sigma(X,Y))'=Y$, gibt es also ein $y\in Y$ und ein $\ve>0$, sodass:
+         \begin{align*}
+         &\forall v\in V:\;\; \Rea(\p{x}{y})+\ve\le \Rea(\p{v}{y})\\
+         \iff& \forall v\in V:\;\;\Rea(\p{x}{-y})-\ve\ge \Rea(\p{v}{-y})\\
+         \implies& \sup_{v\in V}\Rea(\p{v}{-y})\le \Rea(\p{x}{-y})-\ve<\Rea(\p{x}{-y})-\frac{\ve}{2} \\
+         \iff& \underbrace{\underbrace{\sup_{v\in V}\Rea(\p{v}{-y})}_{\ge 0,\te{da }0\in V}+\frac{\ve}{2}}_{=:~C>0}<\Rea(\p{x}{-y})
+         \end{align*}
+         Definiere $\tilde y:=-\frac{y}{C}$. Dann gilt
+         \[1<\Rea(\p{x}{\tilde{y}})\tag{1}\label{1}\]
+         und 
+         \[\sup_{v\in V} \Rea(\p{v}{\tilde y})= \frac{1}{C}\sup_{w\in V}\Rea(\p{w}{-y})\le 1\,.\tag{2}\label{2}\] 
+         \eqref{2} impliziert $\tilde{y}\in V^{\circ}\subseteq A^{\circ}$ (da $A\subseteq V$). Damit folgt jedoch aus \eqref{1}, dass $x\notin A^{\circ\circ}$ \lightning. 
+         
+	\end{proof}
+	
+	\begin{Kor}{Charakterisierung abgeschlossener konvexer Mengen}{}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$ konvex mit $0\in A$. $A$ ist genau dann abgeschlossen bzgl. $\sigma(X,Y)$, wenn $A$ eine Polare ist, also
+		\[A\te{ist abgeschlossen bzgl. }\sigma(X,Y)\iff \exists B\subseteq Y:\;\; B^{\circ}=A\,.\]
+	\end{Kor}
+	
+	\begin{proof}
+		\enquote{$\implies$} Wähle $B:=A^{\circ}$, dann gilt:
+		\[B^{\circ}=A^{\circ\circ}\overset{\ms{\text{Bidualensatz}\\\big\downarrow}}{=}\overline{\mathrm{conv}(A\cup \{0\})}=A\]
+		\enquote{$\impliedby$} Folgt aus Lemma \ref{Lemma:1}(i), angewendet auf das duale Paar $(Y,X)$.
+	\end{proof}
+	
+	\section{Der Satz von Alaoglu-Bourbaki}
+	
+	Hier betrachten wir das duale Paar $(X,X')$ eines lokalkonvexen Raums mit seinem Dualraum.
+	
+	\begin{Satz}{Alaoglu-Bourbaki}{}
+		Sei $U\subseteq X$ eine Nullumgebung. Dann ist $U^{\circ}$ kompakt bezüglich $\sigma(X',X)$.
+	\end{Satz}
+	
+	\begin{proof}
+		Vorüberlegung: Tychonoff gibt eine Kompaktheitsbedingung in der Produkttopologie auf $\KK^X$.\\
+		Sei $\KK^X$ die Menge aller Funktionale auf $X$, dann ist offensichtlich $X'\subseteq X$. Sei $\tau_p$ die Produkttopologie auf $\KK^X$ und $\KK^X|_{X'}$ die Teilraumtopologie auf $X'$. Die Produktopologie ist die gröbste Topologie, bezüglich der alle kanonischen Projektionen
+		\[\pi_x\colon\begin{array}{clc}
+			\KK^X&\to&\KK\\
+			f&\mapsto& f(x)
+		\end{array}\,,\]
+		stetig sind. Dies sind gerade die Auswertungsfunktionale. Somit ist $\tau_p$ die Topologie der punktweisen Konvergenz, denn falls $f_n\to f\in \KK^X$ wrt. $\tau_p$, dann gilt auch $f_n(x)=\pi_x(f_n)\to \pi_x(f)=f(x)$ für jedes $x$.
+		\begin{itemize}
+			\item $\KK^X,\tau_p$ ist ein topologischer Vektorraum, d.h. $+\colon \KK^X\times \KK^X\to \KK^X$ und $\cdot\colon \KK\times \KK^X\to\KK^X$ sind stetig wrt. $\tau_p$.
+			\item Somit ist auch $(X',\tau_p|_{X'})$ ein topologischer Vektorraum, denn $+\colon X'\times X'\to \KK^X$ und $\cdot \colon \KK\times X'\to \KK^X$ sind stetig wrt. $\tau_p|_{X'}$.
+			\item Außerdem sind die eingeschränkten kanonischen Projektionen stetig wrt. $\tau_p|_{X'}$:
+			\[\pi_x|_{X'}\colon \begin{array}{clc}
+				X'&\to&\KK\\
+				f&\mapsto&f(x)
+			\end{array}\]			
+		\end{itemize}
+		Nach Definition ist die schwach-$*$-Topologie ($\sigma(X',X)$) auf $X'$ die gröbste Vektorraumtopologie, sodass alle Auswertungsfunktionale stetig sind, daher muss $\tau_p|_{X'}$ feiner sein als $\sigma(X',X)$, d.h.
+		\[\sigma(X',X)\subseteq \tau_p|_{X'}\,.\]
+		Daraus folgt, dass die Identität
+		\[\id \colon (X',\tau_p|_{X'})\to (X',\sigma(X',X))\]
+		stetig ist. Das heißt, falls eine Menge $A\subseteq X'$ kompakt bezüglich $\tau_p|_{X'}$ ist, dann auch bezüglich $\sigma(X',X)$.\\
+		\\
+		Sei nun $U\subseteq X$ eine Nullumgebung, dann gibt es eine absolutkonvexe offene Menge $V\subseteq U$, denn es gibt eine Nullumgebungsbasis aus absolutkonvexen Mengen. Außerdem ist $V$ als Nullumgebung absorbierend: Sei $x\in X$, dann ist
+		\[g_x\colon \begin{array}{clc}
+			\KK&\to&X\\
+			\lambda&\mapsto&\lambda x
+		\end{array}\]
+		stetig. Also ist $g^{-1}(V)$ eine Nullumgebung in $\KK$, das heißt $\exists \ve_x>0$ sodass $\forall 0<\ve\le\ve_x$: $\ve\in g^{-1}(V)$, was äquivalent ist zu $\ve x\in V\iff x\in \ve^{-1} V$. Wähle
+		\[\lambda_x:=\left\{\begin{array}{cl}
+			1,&x\in V\\
+			\ve_x,& x\notin V
+			\end{array}
+			\right.\]
+		und $K_x:=\overline{B_{\lambda_x^{-1}}(0)}\subseteq \KK$, was offensichtlich kompakt ist. Nach Tychonoff ist
+		\[K:=\bigtimes_{x\in X}K_x=\{f\colon X\to \KK\,|\,\forall x\in X:\;\;f(x)\in K_x\}\]
+		kompakt in $\tau_p$.\\
+		\\
+		Wir zeigen $V^{\circ}\subseteq K$. Sei $f\in V^{\circ}$. Dann gilt, weil $V$ absolut konvex ist:
+		\[\forall x\in V:\;\;|\p{f}{x}|\le 1\]
+		Sei nun $x\in X$ beliebig, dann ist $\lambda_xx\in V$ nach Konstruktion und somit
+		\[|\p{f}{\lambda_xx}|\le 1\iff |\p{f}{x}|\le \frac{1}{\lambda_x}\iff f(x)\in K_x\,.\]
+		
+		Zu guter Letzt zeigen wir, dass $V^{\circ}$ abgeschlossen in $\tau_p|_{K}$ ist. Sei dazu $\{f_{\alpha}\}_{\alpha\in I}$ ein Netz in $V^{\circ}$ mit $\lim_{\alpha\in I}f_{\alpha}=f$.
+		\begin{itemize}
+			\item $f$ ist linear, weil Vektoraddition und Skalarmultiplikation stetig sind.
+			\item $f\colon X\to \KK$ ist stetig, denn:
+			\begin{align*}
+			&f\colon X\to \KK\te{stetig}\\
+			\iff& \exists M>0\,\exists p_1,\ldots,p_n\,\forall x\in X:\;\;|f(x)|\le M\max_{1\le j\le n}|p_j(x)|\\
+			\iff & |f|\colon X\to \RR_+\te{stetig}\\
+			\overset{\ms{|f|\te{Halbnorm}\\\downarrow}}{\iff}& \{x\in X\,|\, |f(x)|\le 1\} \te{Nullumgebung}
+			\end{align*}
+			Wir zeigen $V\subseteq \{x\in X\,|\, |f(x)|\le 1\}$. Sei $x\in V$, dann gilt für alle $\alpha\in I$:
+			\[1\ge |\p{f_{\alpha}}{x}|\]
+			und somit auch $|\p{f}{x}|\le 1$.
+		\end{itemize}
+		Somit ist $f\in X'$. Das heißt, $f_{\alpha}$ ist ein konvergentes Netz in $X'$ bezüglich $\tau_p|_{X'}$. Weil die Identität stetig ist, ist auch $\lim_{\alpha\in I}f_{\alpha}=f$ bezüglich $\sigma(X',X)$. Somit ist $f\in \overline{V^{\circ}}^{\sigma(X',X)}=V^{\circ}$.\\
+		\\
+		Somit ist $V^{\circ}$ eine abgschlossene Teilmenge des Kompaktums $K$ und somit selbst kompakt in $\tau_p|_{K}$. Also auch in $\tau_p$ und auch in $\tau_p|_{X'}$. Nach unserer Vorüberlegung, ist $V^{\circ}$ also auch kompakt in $\sigma(X',X)$. Nun ist ja $V\subseteq U$, also $U^{\circ}\subseteq V^{\circ}$ und $U^{\circ}$ ist abgschlossen in $\sigma(X',X)$ also ist auch $U^{\circ}$ kompakt in $\sigma(X',X)$.		
+	\end{proof}
+	
+	\begin{Kor}{Banach-Alaoglu}{}
+		Ist $X$ ein normierter Raum, dann ist $B_1(0)\subseteq X'$ weak-$*$-kompakt.
+	\end{Kor}
+	
+	\begin{proof}
+		Folgt aus Alaoglu-Bourbaki, mit $U=B_1(0)\subseteq X$ und Beispiel \ref{}.
+	\end{proof}
+	
+	
+	\section{Mackey topologies and the Mackey-Ahrens theorem}
+	
+	Wir wissen ja bereits, dass die $\sigma(X,Y)$-Topologie die gröbste duale Topologie ist, das heißt die gröbste Topologie, sodass
+	\[X'\ni f\leftrightarrow \ell_y\,.\]
+	Für eine gröbere Topologie gibt es $y\in Y$, sodass $\ell_y$ nicht stetig ist.\\
+	Aber man kann auch die Gegenteilige Frage stellen: Welches ist die feinste duale Topologie, also welches ist die feinste lokalkonvexe Toplogie, sodass es keine stetigen linearen Funktionale gibt, die nicht von der Form $\ell_y$ sind?\\
+	\\
+	Dies ist gerade die Mackey-Topologie $\tau(X,Y)$, die gerade die lokalkonvexe Topologie ist, die von den Halbnormen
+	\[\{x\mapsto \sup_{y\in C}|\p{x}{y}|\}_{C\subseteq Y\te{kompakt und konvex}}\]
+	erzeugt wird.\\
+	\\
+	\begin{Satz}{Mackey-Ahrens}{}
+		Sei $(X,Y)$ ein duales Paar und $\tau$ eine $\p{X}{Y}$-duale Topologie auf $X$. Dann gilt
+		\[\sigma(X,Y)\subseteq \tau\subseteq \tau(X,Y)\,.\]
+	\end{Satz}
+	
+	Es gibt einige schöne Resultate:
+	\begin{itemize}
+		\item Ein lokalkonvexer Raum ist reflexiv, gdw. er die Mackey Topologie trägt.
+		\item Jeder Frechet Raum trägt die Mackey topology.
+		\item Insbesondere ist also der Schwartzraum reflexiv.
+		\item Im Schwartzraum ist jede abgschlossene, beschränkte Menge kompakt.
+	\end{itemize}
+	
+	
+	
+	
+\end{document}
