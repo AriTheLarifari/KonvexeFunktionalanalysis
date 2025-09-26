@@ -1,0 +1,137 @@
+\documentclass{article}
+
+\usepackage{mypckg2}
+
+\begin{document}
+	\section{Duale Paare, schwache und duale Topologien}
+	
+	\begin{Def}{Duales Paar}{}
+		Seien $X,Y$ $\KK$-Vektorräume und $\p{\bullet}{\bullet}\colon X\times Y\to \KK$ eine bilineare Abbildung. Sind die Familien $\{x\mapsto \p{x}{y}\}_{y\in Y}$ und $\{y\mapsto \p{x}{y}\}_{x\in X}$ punktetrennend, das heißt
+		\[\forall x\in X\setminus\{0\}\;\exists y\in Y:\;\;\p{x}{y}\ne 0\;\;\te{und }\;\;\forall y\in Y\setminus\{0\}\;\exists x\in X:\;\;\p{x}{y}\ne 0\,,\]
+		so nennt man $(X,Y,\p{X}{Y})$ ein \textbf{duales Paar}.
+	\end{Def}
+	
+	\begin{Bemerkung}{}{}
+		Man kann die Elemente von $X$ bzw. $Y$ als lineare Funktionale auf $Y$ bzw. $X$ auffassen, via
+		\[\ell_{y}\colon x\mapsto \ell_{y}(x)=\p{x}{y}\]
+		bzw.
+		\[\ell_{x}\colon y\mapsto \ell_{x}(y)=\p{x}{y}\,.\]
+	\end{Bemerkung}
+	
+	
+	\begin{Def}{$\sigma(X,Y)$-Topologie}{}
+		Sei $(X,Y)$ ein duales Paar. Die \textbf{$\sigma(X,Y)$-Topologie} auf $X$ ist die lokalkonvexe Toplogie, die von den Halbnormen $(x\mapsto|\p{x}{y}|)_{y\in Y}$ erzeugt wird.
+	\end{Def}
+	
+	
+	Frage: Was ist der topologische Dualraum von $X$ mit der $\sigma(X,Y)$-Topologie?\\
+	Antwort: Es ist genau $Y$!
+	
+	\begin{Kor}{}{}
+		Sei $(X,Y)$ ein duales Paar. Dann ist
+		\[(X,\sigma(X,Y))'=Y\,,\]
+		in dem Sinn, dass jedes lineares, $\sigma(X,Y)$-stetiges Funktional auf $X$ von der Form $x\mapsto \p{x}{y}$ für ein bestimmtes $y$ ist und dass jedes Funktional dieser Form linear und $\sigma(X,Y)$ stetig ist, also:
+		\[(X,\sigma(X,Y))'=\left\{x\mapsto \p{x}{y}\,\big|\, y\in Y\right\}=\{\ell_y\,|\, y\in Y\}\]
+	\end{Kor}
+	
+
+	
+	\begin{Def}{}{}
+		Sei $(X,Y)$ ein duales Paar. Eine lokalkonvexe Topologie $\tau$ auf $X$ heißt \textbf{$\p{X}{Y}$-duale Topologie}, falls 
+		\[(X,\tau)'=Y\,,\]
+		also die linearen, $\tau$-stetigen Funktionale genau die von der Form
+		\[x\mapsto\p{x}{y}\]
+		für $y\in Y$ sind.
+	\end{Def}
+	
+	Nach dieser Definition ist $\sigma(X,Y)$ die gröbste $\p{X}{Y}$-duale Topologie. Eine Charakterisierung aller $\p{X}{Y}$-dualen Topologien gibt der Satz von Mackey-Ahrens.
+	
+	\section{Polare Mengen und der Bipolarensatz}
+	
+	\begin{Def}{}{}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$, $B\subseteq Y$. Dann ist die \textbf{Polare} von $A$ gegeben durch
+		\[A^{\circ}:=\left\{y\in Y\,\big|\,\sup_{x\in A}\Rea(\p{x}{y})\le 1\right\}\tag{Teilmenge von $Y$}\]
+		und die Polare von $B$ durch
+		\[B^{\circ}:=\left\{x\in X\,\big|\,\sup_{y\in B}\Rea(\p{x}{y})\le 1\right\}\tag{Teilmenge von $X$}\]
+	\end{Def}
+	
+	{\fontencoding{U}\fontfamily{futs}\selectfont\char 49\relax} Oft wird auch $|\p{x}{y}|\le 1$ statt $\Rea(\p{x}{y})$ gefordert.
+	
+	
+	
+	\begin{Lemma}{Eigenschaften von Polaren}{1}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$. Dann gilt:
+		\begin{itemize}
+			\item[(i)] $0\in A^{\circ}$, $A^{\circ}$ ist konvex und abgeschlossen bzgl. $\sigma(Y,X)$ und $A^{\circ}=\overline{\mathrm{conv}(A)}^{\circ}$.
+			\item[(ii)] $A\subseteq A^{\circ\circ}$ und $A\subseteq B\implies B^{\circ}\subseteq A^{\circ}$.
+			\item[(iii)] Sei $I$ eine Indexmenge und $(A_i)_{i\in I}\subseteq X^I$. Dann gilt
+			\[\left(\bigcup_{i\in I} A_i\right)^{\circ}=\bigcap_{i\in I}A_i^{\circ}\,.\]
+			\item[(iv)] Ist $A$ kreisförmig, dann ist $A^{\circ}=\{y\in Y\,|\, \sup_{x\in A}|\p{x}{y}|\le 1\}$.
+		\end{itemize}
+	\end{Lemma}
+	
+	
+	\begin{Beispiel}{}{1}
+		 Ist $X$ ein normierter Raum, dann ist
+			\[(\overline{B_1^X})^{\circ}=\overline{B_1^{X'}}\,.\]
+	\end{Beispiel}
+	
+	
+	
+	\begin{Satz}{Bipolarensatz}{}
+		Sei $(X,Y)$ ein duales Paar und $A\subseteq X$. Dann ist 
+		\[A^{\circ\circ}=\overline{\mathrm{conv}(A\cup \{0\})}\,.\]
+	\end{Satz}
+	
+	\begin{proof}
+		\enquote{$\supseteq$}:
+		\begin{align*}
+		&(A\cup\{0\})^{\circ}=A^{\circ}\cap\underbrace{\{0\}^{\circ}}_{Y}=A^{\circ}\implies (A\cup\{0\})^{\circ\circ}=A^{\circ\circ}\\
+		\implies&
+		A^{\circ\circ}=(A\cup \{0\})^{\circ\circ}=\overline{\mathrm{conv}(A\cup \{0\})}^{\circ\circ}\supseteq \overline{\mathrm{conv}(A\cup \{0\})}\,.\end{align*}
+		\enquote{$\subseteq$}: Trenne konvexe Menge und einen Punkt mit Hahn-Banach.		
+	\end{proof}
+	
+	
+	\section{Der Satz von Alaoglu-Bourbaki}
+	
+	Hier betrachten wir das duale Paar $(X,X')$ eines lokalkonvexen Raums mit seinem Dualraum.
+	
+	\begin{Satz}{Alaoglu-Bourbaki}{}
+		Sei $U\subseteq X$ eine Nullumgebung. Dann ist $U^{\circ}$ kompakt bezüglich $\sigma(X',X)$.
+	\end{Satz}
+	
+	\begin{proof}
+		Tychonoff gibt eine Kompaktheitsbedingung in der Produkttopologie auf $\KK^X$ und die $\sigma(X',X)$-Topologie ist gröber als die Teilraumtopologie der Produkttopologie auf $X'$.
+		\end{proof}
+	
+	\begin{Kor}{Banach-Alaoglu}{}
+		Ist $X$ ein normierter Raum, dann ist $B_1(0)\subseteq X'$ weak-$*$-kompakt.
+	\end{Kor}
+	
+	\begin{proof}
+		Folgt aus Alaoglu-Bourbaki, mit $U=\overline{B_1(0)}\subseteq X$ und Beispiel \ref{1}.
+	\end{proof}
+	
+	
+	\section{Mackey topologies and the Mackey-Ahrens theorem}
+	
+	Wir wissen ja bereits, dass die $\sigma(X,Y)$-Topologie die gröbste duale Topologie ist, das heißt die gröbste Topologie, sodass
+	\[X'\ni f\leftrightarrow \ell_y\,.\]
+	Für eine gröbere Topologie gibt es $y\in Y$, sodass $\ell_y$ nicht stetig ist.
+	Aber man kann auch die Gegenteilige Frage stellen: Welches ist die feinste duale Topologie, also welches ist die feinste lokalkonvexe Toplogie, sodass es keine stetigen linearen Funktionale gibt, die nicht von der Form $\ell_y$ sind?
+	Dies ist gerade die Mackey-Topologie $\tau(X,Y)$, die gerade die lokalkonvexe Topologie ist, die von den Halbnormen
+	\[\{x\mapsto \sup_{y\in C}|\p{x}{y}|\}_{C\subseteq Y\te{kompakt und konvex}}\]
+	erzeugt wird.\\
+	\\
+	\begin{Satz}{Mackey-Ahrens}{}
+		Sei $(X,Y)$ ein duales Paar und $\tau$ eine $\p{X}{Y}$-duale Topologie auf $X$. Dann gilt
+		\[\sigma(X,Y)\subseteq \tau\subseteq \tau(X,Y)\,.\]
+	\end{Satz}
+	
+
+	
+	
+	
+	
+\end{document}
